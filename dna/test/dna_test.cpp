@@ -10,14 +10,14 @@ SCENARIO("dna strings", "[dna]" )
 
         WHEN("counting DNA nucleotides")
         {
-            auto result = dna(input);
+            auto [a, c, g, t] = dna(input);
 
             THEN("the return 0 A, 0 C, 0 G, and 0 T")
             {
-                CHECK(std::get<0>(result) == 0);
-                CHECK(std::get<1>(result) == 0);
-                CHECK(std::get<2>(result) == 0);
-                CHECK(std::get<3>(result) == 0);
+                CHECK(a == 0);
+                CHECK(g == 0);
+                CHECK(c == 0);
+                CHECK(t == 0);
             }
         }
     }

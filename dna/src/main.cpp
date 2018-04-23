@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-static std::string readAllInput()
+static auto readAllInput()
 {
     const std::istreambuf_iterator<char> begin(std::cin);
     const std::istreambuf_iterator<char> end;
@@ -13,11 +13,8 @@ static std::string readAllInput()
 int main()
 {
     auto input = readAllInput();
-    auto result = dna(input);
-    std::cout << std::get<0>(result) << " "
-              << std::get<1>(result) << " "
-              << std::get<2>(result) << " "
-              << std::get<3>(result) << "\n";
+    auto [a, c, g, t] = dna(input);
+    std::cout << a << " " << c << " " << g << " " << t << "\n";
 
     return 0;
 }
