@@ -4,6 +4,6 @@
 #include <string>
 #include <tuple>
 
-std::tuple<int, int, int, int> dna(const std::string &input);
+std::tuple<int, int, int, int> dna(const std::string& input);
 
-#endif //ROSALIND_DNA_H
+#endif // ROSALIND_DNA_H

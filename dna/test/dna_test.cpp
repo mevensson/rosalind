@@ -2,7 +2,7 @@
 
 #include "catch.hpp"
 
-SCENARIO("dna strings", "[dna]" )
+SCENARIO("dna strings", "[dna]")
 {
     GIVEN("an empty input string")
     {
