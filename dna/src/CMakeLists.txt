@@ -18,4 +18,5 @@ target_link_libraries(
         dna
         dna_lib
         Boost::program_options
+        Threads::Threads
 )

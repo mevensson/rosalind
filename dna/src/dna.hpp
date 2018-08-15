@@ -4,6 +4,17 @@
 #include <string>
 #include <tuple>
 
-std::tuple<int, int, int, int> dna(const std::string& input);
+struct DnaSymbolCount
+{
+    int a;
+    int c;
+    int g;
+    int t;
+};
+
+auto dna_ser(const std::string_view& input) -> DnaSymbolCount;
+
+auto dna_par(const std::string_view& input, const int nthreads)
+    -> DnaSymbolCount;
 
 #endif // ROSALIND_DNA_H

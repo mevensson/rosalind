@@ -10,7 +10,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return 0 A, 0 C, 0 G, and 0 T")
             {
@@ -27,7 +27,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return 2 A, 0 C, 0 G, and 0 T")
             {
@@ -44,7 +44,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return 0 A, 2 C, 0 G, and 0 T")
             {
@@ -61,7 +61,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return 0 A, 0 C, 2 G, and 0 T")
             {
@@ -78,7 +78,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return 0 A, 0 C, 0 G, and 2 T")
             {
@@ -96,7 +96,7 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna(input);
+            auto [a, c, g, t] = dna_ser(input);
 
             THEN("the return the count of A, C, G, and T's")
             {
