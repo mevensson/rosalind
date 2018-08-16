@@ -10,6 +10,8 @@ enable_testing()
 
 add_subdirectory(lib/catch2)
 
+add_subdirectory(src/options)
+
 add_subdirectory(src/dna)
 
 add_subdirectory(src/main)

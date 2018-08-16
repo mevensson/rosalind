@@ -5,7 +5,6 @@ add_executable(
 
 target_link_libraries(
         rosalind
+        options_lib
         dna_lib
-        Boost::program_options
-        Threads::Threads
 )
