@@ -3,11 +3,13 @@ project(rosalind)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Boost 1.65 COMPONENTS program_options REQUIRED)
+find_package(Boost COMPONENTS program_options REQUIRED)
 find_package(Threads)
 
 enable_testing()
 
-add_subdirectory(dna)
+add_subdirectory(lib/catch2)
 
-add_subdirectory(main)
+add_subdirectory(src/dna)
+
+add_subdirectory(src/main)

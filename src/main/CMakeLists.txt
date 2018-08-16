@@ -1,6 +1,6 @@
 add_executable(
         rosalind
-        main.cpp
+        src/main.cpp
 )
 
 target_link_libraries(
