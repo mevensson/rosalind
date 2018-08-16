@@ -1,6 +1,7 @@
 add_library(
         dna_lib
         src/dna.cpp
+        include/dna.hpp
 )
 
 target_include_directories(
