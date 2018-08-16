@@ -6,17 +6,5 @@ add_library(
 
 target_include_directories(
         dna_lib
-        INTERFACE .
-)
-
-add_executable(
-        dna
-        main.cpp
-)
-
-target_link_libraries(
-        dna
-        dna_lib
-        Boost::program_options
-        Threads::Threads
+        PUBLIC .
 )
