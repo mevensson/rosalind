@@ -3,6 +3,8 @@ project(rosalind)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+
 find_package(Boost COMPONENTS program_options REQUIRED)
 find_package(Threads)
 

@@ -67,7 +67,7 @@ static auto do_parse(const int argc, const char* const argv[])
 
     if (parse_error || vm.count("help") > 0)
     {
-        const auto program_name = argc >= 1 ? argv[0] : "dna";
+        const auto program_name = argc >= 1 ? argv[0] : "dna"; // NOLINT
         std::cout << "Usage: " << program_name << " [options]\n\n";
         std::cout << options;
         std::exit(EXIT_SUCCESS);
@@ -78,7 +78,7 @@ static auto do_parse(const int argc, const char* const argv[])
 
 auto get_execution_type(const variables_map& vm)
 {
-    return vm.count("parallel")
+    return vm.count("parallel") > 0
         ? ExecutionType::parallel(vm["parallel"].as<int>())
         : ExecutionType::serial();
 }

@@ -12,9 +12,9 @@ struct DnaSymbolCount
     int t;
 };
 
-auto dna_ser(const std::string_view& input) -> DnaSymbolCount;
+auto dna_ser(const std::string_view& symbols) -> DnaSymbolCount;
 
-auto dna_par(const std::string_view& input, const int nthreads)
+auto dna_par(const std::string_view& symbols, const int nthreads)
     -> DnaSymbolCount;
 
 #endif // ROSALIND_DNA_H

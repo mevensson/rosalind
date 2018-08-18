@@ -2,15 +2,19 @@
 
 #include "catch.hpp"
 
+#include <string>
+
+using namespace std::string_literals;
+
 SCENARIO("dna strings", "[dna]")
 {
     GIVEN("an empty input string")
     {
-        const std::string input = {""};
+        const auto input = ""s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return 0 A, 0 C, 0 G, and 0 T")
             {
@@ -23,11 +27,11 @@ SCENARIO("dna strings", "[dna]")
     }
     GIVEN("an input string with two A's")
     {
-        const std::string input = {"AA"};
+        const auto input = "AA"s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return 2 A, 0 C, 0 G, and 0 T")
             {
@@ -40,11 +44,11 @@ SCENARIO("dna strings", "[dna]")
     }
     GIVEN("an input string with two C's")
     {
-        const std::string input = {"CC"};
+        const auto input = "CC"s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return 0 A, 2 C, 0 G, and 0 T")
             {
@@ -57,11 +61,11 @@ SCENARIO("dna strings", "[dna]")
     }
     GIVEN("an input string with two G's")
     {
-        const std::string input = {"GG"};
+        const auto input = "GG"s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return 0 A, 0 C, 2 G, and 0 T")
             {
@@ -74,11 +78,11 @@ SCENARIO("dna strings", "[dna]")
     }
     GIVEN("an input string with two T's")
     {
-        const std::string input = {"TT"};
+        const auto input = "TT"s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return 0 A, 0 C, 0 G, and 2 T")
             {
@@ -91,12 +95,12 @@ SCENARIO("dna strings", "[dna]")
     }
     GIVEN("an input string with lots of A, C, G, and T's")
     {
-        const std::string input = {"AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGG"
-                                   "ATTAAAAAAAGAGTGTCTGATAGCAGC"};
+        const auto input =
+            "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"s;
 
         WHEN("counting DNA nucleotides")
         {
-            auto [a, c, g, t] = dna_ser(input);
+            auto [a, c, g, t] = dna_ser(input); // NOLINT
 
             THEN("the return the count of A, C, G, and T's")
             {
