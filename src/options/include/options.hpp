@@ -24,17 +24,25 @@ private:
     ExecutionType(const Type type, const int numThreads);
 };
 
+enum class Problem
+{
+    Dna,
+    Rna
+};
+
 class Options
 {
 public:
-    Options(const ExecutionType executionType);
+    Options(const ExecutionType executionType, const Problem problem);
 
     auto executionType() const -> ExecutionType;
+    auto problem() const -> Problem;
 
 private:
     ExecutionType mExcutionType;
+    Problem mProblem;
 };
 
-auto parse_options(const int argc, const char* const argv[]) -> Options;
+auto parseOptions(const int argc, const char* const argv[]) -> Options;
 
 #endif // ROSALIND_OPTIONS_H

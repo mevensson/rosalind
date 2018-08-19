@@ -7,4 +7,5 @@ target_link_libraries(
         rosalind
         options_lib
         dna_lib
+        rna_lib
 )

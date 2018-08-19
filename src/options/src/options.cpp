@@ -32,8 +32,8 @@ ExecutionType::ExecutionType(const Type type, const int numThreads) :
 {
 }
 
-Options::Options(const ExecutionType executionType) :
-    mExcutionType(executionType)
+Options::Options(const ExecutionType executionType, const Problem problem) :
+    mExcutionType(executionType), mProblem(problem)
 {
 }
 
@@ -42,17 +42,49 @@ auto Options::executionType() const -> ExecutionType
     return mExcutionType;
 }
 
-static auto do_parse(const int argc, const char* const argv[])
+auto Options::problem() const -> Problem
+{
+    return mProblem;
+}
+
+static auto validate(
+    boost::any& result,
+    const std::vector<std::string>& values,
+    Problem* /*unused*/,
+    int /*unused*/)
+{
+    validators::check_first_occurrence(result);
+
+    const auto& string = validators::get_single_string(values);
+    if (string == "dna")
+    {
+        result = Problem::Dna;
+    }
+    else if (string == "rna")
+    {
+        result = Problem::Rna;
+    }
+    else
+    {
+        throw validation_error(validation_error::invalid_option_value);
+    }
+}
+
+static auto doParse(const int argc, const char* const argv[])
 {
     auto options = options_description{"Options"};
 
     // clang-format off
     options.add_options()
         ("help,h", "Display this help message.")
-        ("parallel,p", value<int>(), "Use parallel algorithm with the specified number of threads.");
+        ("parallel", value<int>(), "Use parallel algorithm with the specified number of threads.")
+        ("problem,p", value<Problem>()->required(), "Select which problem to solve.\n"
+                                                    "Valid values are:\n"
+                                                    "    dna\n"
+                                                    "    rna\n");
     // clang-format on
 
-    auto parse_error = false;
+    auto parseError = false;
     auto vm = variables_map{};
     try
     {
@@ -62,13 +94,13 @@ static auto do_parse(const int argc, const char* const argv[])
     catch (const std::exception& e)
     {
         std::cerr << "Error: " << e.what() << "\n\n";
-        parse_error = true;
+        parseError = true;
     }
 
-    if (parse_error || vm.count("help") > 0)
+    if (parseError || vm.count("help") > 0)
     {
-        const auto program_name = argc >= 1 ? argv[0] : "dna"; // NOLINT
-        std::cout << "Usage: " << program_name << " [options]\n\n";
+        const auto programName = argc >= 1 ? argv[0] : "rosalind"; // NOLINT
+        std::cout << "Usage: " << programName << " [options]\n\n";
         std::cout << options;
         std::exit(EXIT_SUCCESS);
     }
@@ -76,15 +108,20 @@ static auto do_parse(const int argc, const char* const argv[])
     return vm;
 }
 
-auto get_execution_type(const variables_map& vm)
+auto getExecutionType(const variables_map& vm)
 {
     return vm.count("parallel") > 0
         ? ExecutionType::parallel(vm["parallel"].as<int>())
         : ExecutionType::serial();
 }
 
-auto parse_options(const int argc, const char* const argv[]) -> Options
+auto getProblem(const variables_map& vm)
 {
-    const auto vm = do_parse(argc, argv);
-    return Options{get_execution_type(vm)};
+    return vm["problem"].as<Problem>();
+}
+
+auto parseOptions(const int argc, const char* const argv[]) -> Options
+{
+    const auto vm = doParse(argc, argv);
+    return Options{getExecutionType(vm), getProblem(vm)};
 }

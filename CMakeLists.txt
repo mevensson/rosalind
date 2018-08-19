@@ -8,6 +8,7 @@ set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 find_package(Boost COMPONENTS program_options REQUIRED)
 find_package(Threads)
 
+include(CTest)
 enable_testing()
 
 add_subdirectory(lib/catch2)
@@ -15,5 +16,6 @@ add_subdirectory(lib/catch2)
 add_subdirectory(src/options)
 
 add_subdirectory(src/dna)
+add_subdirectory(src/rna)
 
 add_subdirectory(src/main)
