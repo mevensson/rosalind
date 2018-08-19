@@ -111,4 +111,22 @@ SCENARIO("dna strings", "[dna]")
             }
         }
     }
+    GIVEN("an input string with lots of A, C, G, and T's")
+    {
+        const auto input =
+            "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"s;
+
+        WHEN("counting DNA nucleotides using 3 threads")
+        {
+            auto [a, c, g, t] = dna_par(input, 3); // NOLINT
+
+            THEN("the return the count of A, C, G, and T's")
+            {
+                CHECK(a == 20);
+                CHECK(c == 12);
+                CHECK(g == 17);
+                CHECK(t == 21);
+            }
+        }
+    }
 }

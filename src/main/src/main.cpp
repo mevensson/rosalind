@@ -31,7 +31,9 @@ int main(const int argc, const char* const argv[])
     }
     case Problem::Rna:
     {
-        auto result = rna(input);
+        auto result = executionType.type() == ExecutionType::Type::Parallel
+            ? rna_par(input, executionType.numThreads())
+            : rna_ser(input);
         std::cout << result << "\n";
         break;
     }
