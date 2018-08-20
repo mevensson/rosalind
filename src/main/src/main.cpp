@@ -40,7 +40,7 @@ int main(const int argc, const char* const argv[])
     }
     case Problem::Revc:
     {
-        auto result = revc(input);
+        auto result = revc_ser(input);
         std::cout << result << "\n";
         break;
     }
