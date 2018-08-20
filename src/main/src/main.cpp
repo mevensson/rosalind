@@ -1,5 +1,6 @@
 #include "dna.hpp"
 #include "options.hpp"
+#include "revc.hpp"
 #include "rna.hpp"
 
 #include <iostream>
@@ -34,6 +35,12 @@ int main(const int argc, const char* const argv[])
         auto result = executionType.type() == ExecutionType::Type::Parallel
             ? rna_par(input, executionType.numThreads())
             : rna_ser(input);
+        std::cout << result << "\n";
+        break;
+    }
+    case Problem::Revc:
+    {
+        auto result = revc(input);
         std::cout << result << "\n";
         break;
     }

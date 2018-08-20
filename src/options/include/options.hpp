@@ -27,7 +27,8 @@ private:
 enum class Problem
 {
     Dna,
-    Rna
+    Rna,
+    Revc
 };
 
 class Options

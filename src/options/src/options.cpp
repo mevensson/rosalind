@@ -64,6 +64,10 @@ static auto validate(
     {
         result = Problem::Rna;
     }
+    else if (string == "revc")
+    {
+        result = Problem::Revc;
+    }
     else
     {
         throw validation_error(validation_error::invalid_option_value);

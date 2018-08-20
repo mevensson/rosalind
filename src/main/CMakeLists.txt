@@ -8,4 +8,5 @@ target_link_libraries(
         options_lib
         dna_lib
         rna_lib
+        revc_lib
 )

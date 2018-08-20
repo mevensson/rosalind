@@ -17,5 +17,6 @@ add_subdirectory(src/options)
 
 add_subdirectory(src/dna)
 add_subdirectory(src/rna)
+add_subdirectory(src/revc)
 
 add_subdirectory(src/main)
