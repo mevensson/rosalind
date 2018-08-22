@@ -7,9 +7,9 @@
 
 static auto readAllInput()
 {
-    const std::istreambuf_iterator<char> begin(std::cin);
-    const std::istreambuf_iterator<char> end;
-    const std::string input(begin, end);
+    const auto begin = std::istreambuf_iterator<char>{std::cin};
+    const auto end = std::istreambuf_iterator<char>{};
+    const auto input = std::string{begin, end};
     return input;
 }
 
