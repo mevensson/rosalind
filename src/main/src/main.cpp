@@ -3,11 +3,13 @@
 #include "revc.hpp"
 #include "rna.hpp"
 
+#include <fstream>
 #include <iostream>
 
-static auto readAllInput()
+static auto readFile(const std::string& filename)
 {
-    const auto begin = std::istreambuf_iterator<char>{std::cin};
+    auto file = std::ifstream{filename};
+    const auto begin = std::istreambuf_iterator<char>{file};
     const auto end = std::istreambuf_iterator<char>{};
     const auto input = std::string{begin, end};
     return input;
@@ -18,7 +20,7 @@ int main(const int argc, const char* const argv[])
     auto options = parseOptions(argc, argv);
 
     auto executionType = options.executionType();
-    auto input = readAllInput();
+    auto input = readFile(options.filename());
     switch (options.problem())
     {
     case Problem::Dna:

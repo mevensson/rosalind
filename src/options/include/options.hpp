@@ -1,6 +1,8 @@
 #ifndef ROSALIND_OPTIONS_H
 #define ROSALIND_OPTIONS_H
 
+#include <string>
+
 class ExecutionType
 {
 public:
@@ -34,14 +36,19 @@ enum class Problem
 class Options
 {
 public:
-    Options(const ExecutionType executionType, const Problem problem);
+    Options(
+        const ExecutionType executionType,
+        const Problem problem,
+        std::string filename);
 
     auto executionType() const -> ExecutionType;
     auto problem() const -> Problem;
+    auto filename() const -> std::string;
 
 private:
     ExecutionType mExcutionType;
     Problem mProblem;
+    std::string mFilename;
 };
 
 auto parseOptions(const int argc, const char* const argv[]) -> Options;

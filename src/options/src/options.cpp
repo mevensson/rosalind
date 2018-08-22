@@ -1,6 +1,7 @@
 
 #include "options.hpp"
 
+#include <algorithm>
 #include <boost/program_options.hpp>
 #include <cstdlib>
 #include <iostream>
@@ -32,8 +33,12 @@ ExecutionType::ExecutionType(const Type type, const int numThreads) :
 {
 }
 
-Options::Options(const ExecutionType executionType, const Problem problem) :
-    mExcutionType(executionType), mProblem(problem)
+Options::Options(
+    const ExecutionType executionType,
+    const Problem problem,
+    std::string filename) :
+    mExcutionType(executionType),
+    mProblem(problem), mFilename(std::move(filename))
 {
 }
 
@@ -45,6 +50,11 @@ auto Options::executionType() const -> ExecutionType
 auto Options::problem() const -> Problem
 {
     return mProblem;
+}
+
+auto Options::filename() const -> std::string
+{
+    return mFilename;
 }
 
 static auto validate(
@@ -85,7 +95,8 @@ static auto doParse(const int argc, const char* const argv[])
         ("problem,p", value<Problem>()->required(), "Select which problem to solve.\n"
                                                     "Valid values are:\n"
                                                     "    dna\n"
-                                                    "    rna\n");
+                                                    "    rna\n")
+        ("filename,f", value<std::string>()->required(), "The input file.");
     // clang-format on
 
     auto parseError = false;
@@ -124,8 +135,13 @@ auto getProblem(const variables_map& vm)
     return vm["problem"].as<Problem>();
 }
 
+auto getFilename(const variables_map& vm)
+{
+    return vm["filename"].as<std::string>();
+}
+
 auto parseOptions(const int argc, const char* const argv[]) -> Options
 {
     const auto vm = doParse(argc, argv);
-    return Options{getExecutionType(vm), getProblem(vm)};
+    return Options{getExecutionType(vm), getProblem(vm), getFilename(vm)};
 }
