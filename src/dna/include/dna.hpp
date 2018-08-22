@@ -2,7 +2,6 @@
 #define ROSALIND_DNA_H
 
 #include <string>
-#include <tuple>
 
 struct DnaSymbolCount
 {
@@ -10,6 +9,8 @@ struct DnaSymbolCount
     int c;
     int g;
     int t;
+
+    auto operator+(const char symbol) const;
 };
 
 auto dna_ser(const std::string_view& symbols) -> DnaSymbolCount;
