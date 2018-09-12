@@ -2,7 +2,9 @@
 #define ROSALIND_RNA_H
 
 #include <algorithm>
+#include <future>
 #include <string>
+#include <vector>
 
 template<class InputIt, class OutputIt>
 auto rna(
@@ -22,7 +24,34 @@ auto rna_ser(const RandomIt first, const RandomIt last)
     return result;
 }
 
-auto rna_par(const std::string_view& symbols, const int nthreads)
-    -> std::string;
+template<class RandomIt>
+auto rna_par(const RandomIt first, const RandomIt last, const int nthreads)
+{
+    auto result = std::string{};
+    const auto size = last - first;
+    result.resize(size);
+
+    const auto threadSize = (size - 1) / nthreads + 1; // Round up
+    auto futures = std::vector<std::future<void>>{};
+    for (auto i = 0; i < nthreads; ++i)
+    {
+        const auto threadFirst = first + i * threadSize;
+        const auto threadLast = threadFirst + threadSize;
+        auto threadResultFirst = result.begin() + i * threadSize;
+        futures.emplace_back(std::async(
+            [](const auto& first, const auto& last, const auto& out) {
+                rna(first, last, out);
+            },
+            threadFirst,
+            threadLast > last ? last : threadLast,
+            threadResultFirst));
+    }
+
+    for (auto& future : futures)
+    {
+        future.wait();
+    }
+    return result;
+}
 
 #endif // ROSALIND_RNA_H

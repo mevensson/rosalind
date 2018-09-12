@@ -1,18 +1,18 @@
-add_library(
-        rna_lib
-        src/rna.cpp
-        include/rna.hpp
-)
+add_library(rna_lib INTERFACE)
 
 target_include_directories(
         rna_lib
-        PUBLIC include
-        PRIVATE src
+        INTERFACE include
+)
+
+target_sources(
+        dna_lib
+        INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/rna.hpp
 )
 
 target_link_libraries(
         rna_lib
-        Threads::Threads
+        INTERFACE Threads::Threads
 )
 
 # Unit tests

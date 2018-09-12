@@ -94,15 +94,9 @@ SCENARIO("rna strings", "[rna]")
                     == "AGCUUUUCAUUCUGACUGCAACGGGCAAUAUGUCUCUGUGUGGAUUAAAAAAAGAGUGUCUGAUAGCAGC"s);
             }
         }
-    }
-    GIVEN("an input string with lots of A, C, G, and T's")
-    {
-        const auto input =
-            "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"s;
-
         WHEN("transcribing DNA into RNA using 3 threads")
         {
-            auto result = rna_par(input, 3);
+            auto result = rna_par(input.begin(), input.end(), 3);
 
             THEN("the return string with all T's replaced with U's")
             {
