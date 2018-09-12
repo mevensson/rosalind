@@ -1,18 +1,18 @@
-add_library(
-        dna_lib
-        src/dna.cpp
-        include/dna.hpp
-)
+add_library(dna_lib INTERFACE)
 
 target_include_directories(
         dna_lib
-        PUBLIC include
-        PRIVATE src
+        INTERFACE include
+)
+
+target_sources(
+        dna_lib
+        INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/dna.hpp
 )
 
 target_link_libraries(
         dna_lib
-        Threads::Threads
+        INTERFACE Threads::Threads
 )
 
 # Unit tests

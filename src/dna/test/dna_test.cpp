@@ -118,7 +118,8 @@ SCENARIO("dna strings", "[dna]")
 
         WHEN("counting DNA nucleotides using 3 threads")
         {
-            auto [a, c, g, t] = dna_par(input, 3); // NOLINT
+            auto [a, c, g, t] = // NOLINT
+                dna_par(input.begin(), input.end(), 3);
 
             THEN("the return the count of A, C, G, and T's")
             {
