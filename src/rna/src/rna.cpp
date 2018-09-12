@@ -1,26 +1,8 @@
 #include "rna.hpp"
 
-#include <algorithm>
 #include <future>
 #include <string>
 #include <vector>
-
-template<class InputIt, class OutputIt>
-auto rna(
-    const InputIt inputBegin,
-    const InputIt inputEnd,
-    const OutputIt outputBegin)
-{
-    std::replace_copy(inputBegin, inputEnd, outputBegin, 'T', 'U');
-}
-
-auto rna_ser(const std::string_view& symbols) -> std::string
-{
-    auto result = std::string{};
-    result.resize(symbols.size());
-    rna(symbols.begin(), symbols.end(), result.begin());
-    return result;
-}
 
 auto rna_par(const std::string_view& symbols, const int nthreads) -> std::string
 {

@@ -14,7 +14,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return empty string")
             {
@@ -28,7 +28,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return sring with two A's")
             {
@@ -42,7 +42,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return string with two C's")
             {
@@ -56,7 +56,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return string with two G's")
             {
@@ -70,7 +70,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return string with two U's")
             {
@@ -85,7 +85,7 @@ SCENARIO("rna strings", "[rna]")
 
         WHEN("transcribing DNA into RNA")
         {
-            auto result = rna_ser(input);
+            auto result = rna_ser(input.begin(), input.end());
 
             THEN("the return string with all T's replaced with U's")
             {

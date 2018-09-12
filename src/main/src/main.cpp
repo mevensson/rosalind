@@ -36,7 +36,7 @@ int main(const int argc, const char* const argv[])
     {
         auto result = executionType.type() == ExecutionType::Type::Parallel
             ? rna_par(input, executionType.numThreads())
-            : rna_ser(input);
+            : rna_ser(input.begin(), input.end());
         std::cout << result << "\n";
         break;
     }
