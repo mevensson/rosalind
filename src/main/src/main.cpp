@@ -28,7 +28,7 @@ int main(const int argc, const char* const argv[])
         auto [a, c, g, t] = // NOLINT
             executionType.type() == ExecutionType::Type::Parallel
             ? dna_par(input, executionType.numThreads())
-            : dna_ser(input);
+            : dna_ser(input.begin(), input.end());
         std::cout << a << " " << c << " " << g << " " << t << "\n";
         break;
     }

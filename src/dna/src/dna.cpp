@@ -1,38 +1,7 @@
 #include "dna.hpp"
 
 #include <future>
-#include <numeric>
 #include <vector>
-
-auto DnaSymbolCount::operator+(const char symbol) const
-{
-    auto result = *this;
-    switch (symbol)
-    {
-    case 'A':
-        result.a += 1;
-        break;
-    case 'C':
-        result.c += 1;
-        break;
-    case 'G':
-        result.g += 1;
-        break;
-    case 'T':
-        result.t += 1;
-        break;
-    }
-    return result;
-}
-
-auto dna_ser(const std::string_view& symbols) -> DnaSymbolCount
-{
-    const auto init = DnaSymbolCount{};
-    return std::accumulate(
-        symbols.begin(), symbols.end(), init, [](const auto& a, const auto& b) {
-            return a + b;
-        });
-}
 
 auto dna_par(const std::string_view& symbols, const int nthreads)
     -> DnaSymbolCount
@@ -43,7 +12,12 @@ auto dna_par(const std::string_view& symbols, const int nthreads)
     {
         const auto threadStart = i * threadSize;
         const auto threadSymbols = symbols.substr(threadStart, threadSize);
-        futures.emplace_back(std::async(dna_ser, threadSymbols));
+        futures.emplace_back(std::async(
+            [](const auto& first, const auto& last) {
+                return dna_ser(first, last);
+            },
+            threadSymbols.begin(),
+            threadSymbols.end()));
     }
 
     auto result = DnaSymbolCount{0, 0, 0, 0};
