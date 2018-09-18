@@ -1,43 +1,8 @@
 #include "revc.hpp"
 
-#include <algorithm>
 #include <future>
 #include <string>
 #include <vector>
-
-template<class InputIt, class OutputIt>
-auto revc(
-    const InputIt inputBegin,
-    const InputIt inputEnd,
-    const OutputIt outputBegin)
-{
-    std::transform(inputBegin, inputEnd, outputBegin, [](const auto& s) {
-        switch (s)
-        {
-        case 'A':
-            return 'T';
-        case 'C':
-            return 'G';
-        case 'G':
-            return 'C';
-        case 'T':
-            return 'A';
-        default:
-            return s;
-        }
-    });
-    const auto inputSize = inputEnd - inputBegin;
-    const auto outputEnd = outputBegin + inputSize;
-    std::reverse(outputBegin, outputEnd);
-}
-
-auto revc_ser(const std::string_view& symbols) -> std::string
-{
-    auto result = std::string{};
-    result.resize(symbols.size());
-    revc(symbols.begin(), symbols.end(), result.begin());
-    return result;
-}
 
 auto revc_par(const std::string_view& symbols, int nthreads) -> std::string
 {

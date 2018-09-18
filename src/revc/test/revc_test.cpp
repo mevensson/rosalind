@@ -14,7 +14,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return empty string")
             {
@@ -28,7 +28,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return string with two T:s")
             {
@@ -42,7 +42,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return string with two G:s")
             {
@@ -56,7 +56,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return string with two C:s")
             {
@@ -70,7 +70,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return string with two A:s")
             {
@@ -84,7 +84,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return the string 'GT'")
             {
@@ -98,7 +98,7 @@ SCENARIO("DNA reverse complement", "[rna]")
 
         WHEN("taking the reverse complement")
         {
-            auto result = revc_ser(input);
+            auto result = revc_ser(input.begin(), input.end());
 
             THEN("the return the reverse complement string")
             {

@@ -44,7 +44,7 @@ int main(const int argc, const char* const argv[])
     {
         auto result = executionType.type() == ExecutionType::Type::Parallel
             ? revc_par(input, executionType.numThreads())
-            : revc_ser(input);
+            : revc_ser(input.begin(), input.end());
         std::cout << result << "\n";
         break;
     }
