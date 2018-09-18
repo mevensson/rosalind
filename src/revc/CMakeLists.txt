@@ -1,18 +1,18 @@
-add_library(
-        revc_lib
-        src/revc.cpp
-        include/revc.hpp
-)
+add_library(revc_lib INTERFACE)
 
 target_include_directories(
         revc_lib
-        PUBLIC include
-        PRIVATE src
+        INTERFACE include
+)
+
+target_sources(
+        revc_lib
+        INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/revc.hpp
 )
 
 target_link_libraries(
         revc_lib
-        Threads::Threads
+        INTERFACE Threads::Threads
 )
 
 # Unit tests

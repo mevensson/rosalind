@@ -105,14 +105,9 @@ SCENARIO("DNA reverse complement", "[rna]")
                 CHECK(result == "ACCGGGTTTT"s);
             }
         }
-    }
-    GIVEN("an input string with lots of A, C, G, and T's")
-    {
-        const auto input = "AAAACCCGGT"s;
-
         WHEN("taking the reverse complement using 3 threads")
         {
-            auto result = revc_par(input, 3);
+            auto result = revc_par(input.begin(), input.end(), 3);
 
             THEN("the return the reverse complement string")
             {

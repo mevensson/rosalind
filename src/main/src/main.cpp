@@ -43,7 +43,7 @@ int main(const int argc, const char* const argv[])
     case Problem::Revc:
     {
         auto result = executionType.type() == ExecutionType::Type::Parallel
-            ? revc_par(input, executionType.numThreads())
+            ? revc_par(input.begin(), input.end(), executionType.numThreads())
             : revc_ser(input.begin(), input.end());
         std::cout << result << "\n";
         break;
