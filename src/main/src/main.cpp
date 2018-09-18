@@ -3,48 +3,44 @@
 #include "revc.hpp"
 #include "rna.hpp"
 
+#include <boost/iostreams/device/mapped_file.hpp>
 #include <fstream>
 #include <iostream>
 
-static auto readFile(const std::string& filename)
-{
-    auto file = std::ifstream{filename};
-    const auto begin = std::istreambuf_iterator<char>{file};
-    const auto end = std::istreambuf_iterator<char>{};
-    const auto input = std::string{begin, end};
-    return input;
-}
+using namespace boost::iostreams;
 
 int main(const int argc, const char* const argv[])
 {
-    auto options = parseOptions(argc, argv);
+    const auto options = parseOptions(argc, argv);
 
-    auto executionType = options.executionType();
-    auto input = readFile(options.filename());
+    const auto executionType = options.executionType();
+    const auto mappedFile = mapped_file_source{options.filename()};
+    const auto first = mappedFile.begin();
+    const auto last = mappedFile.end();
     switch (options.problem())
     {
     case Problem::Dna:
     {
         auto [a, c, g, t] = // NOLINT
             executionType.type() == ExecutionType::Type::Parallel
-            ? dna_par(input.begin(), input.end(), executionType.numThreads())
-            : dna_ser(input.begin(), input.end());
+            ? dna_par(first, last, executionType.numThreads())
+            : dna_ser(first, last);
         std::cout << a << " " << c << " " << g << " " << t << "\n";
         break;
     }
     case Problem::Rna:
     {
         auto result = executionType.type() == ExecutionType::Type::Parallel
-            ? rna_par(input.begin(), input.end(), executionType.numThreads())
-            : rna_ser(input.begin(), input.end());
+            ? rna_par(first, last, executionType.numThreads())
+            : rna_ser(first, last);
         std::cout << result << "\n";
         break;
     }
     case Problem::Revc:
     {
         auto result = executionType.type() == ExecutionType::Type::Parallel
-            ? revc_par(input.begin(), input.end(), executionType.numThreads())
-            : revc_ser(input.begin(), input.end());
+            ? revc_par(first, last, executionType.numThreads())
+            : revc_ser(first, last);
         std::cout << result << "\n";
         break;
     }
