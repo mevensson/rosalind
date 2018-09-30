@@ -11,3 +11,5 @@ target_link_libraries(
         revc_lib
         Boost::iostreams
 )
+
+install(TARGETS rosalind DESTINATION bin)
