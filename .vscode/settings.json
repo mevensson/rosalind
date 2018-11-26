@@ -10,6 +10,7 @@
         "vector": "cpp",
         "initializer_list": "cpp",
         "string_view": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "tuple": "cpp"
     }
 }

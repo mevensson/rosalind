@@ -67,7 +67,9 @@ int main(const int argc, const char* const argv[])
     }
     case Problem::Subs:
     {
-        const auto result = subs(first, last);
+        const auto ser = &subs_ser<decltype(first)>;
+        const auto par = &subs_par<decltype(first)>;
+        const auto result = execute(executionType, ser, par, first, last);
         for (const auto& i : result)
         {
             std::cout << i << " ";

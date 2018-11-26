@@ -17,7 +17,7 @@ SCENARIO("finding substrings", "[subs]")
         {
             THEN("throw exception")
             {
-                REQUIRE_THROWS(subs(input.begin(), input.end()));
+                REQUIRE_THROWS(subs_ser(input.begin(), input.end()));
             }
         }
     }
@@ -27,7 +27,7 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
 
             THEN("the return empty vector")
             {
@@ -41,7 +41,7 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
 
             THEN("the return postion 1")
             {
@@ -55,7 +55,7 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
 
             THEN("the return both positions")
             {
@@ -69,7 +69,7 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
 
             THEN("the return all positions")
             {
@@ -83,7 +83,7 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
 
             THEN("the return postion")
             {
@@ -97,7 +97,16 @@ SCENARIO("finding substrings", "[subs]")
 
         WHEN("finding sub strings")
         {
-            auto result = subs(input.begin(), input.end());
+            auto result = subs_ser(input.begin(), input.end());
+
+            THEN("the return all positions")
+            {
+                CHECK_THAT(result, Equals(std::vector<int>{2, 4, 10}));
+            }
+        }
+        WHEN("finding sub strings using 3 threads")
+        {
+            auto result = subs_par(input.begin(), input.end(), 3);
 
             THEN("the return all positions")
             {
