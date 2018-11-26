@@ -30,7 +30,8 @@ enum class Problem
 {
     Dna,
     Rna,
-    Revc
+    Revc,
+    Subs
 };
 
 class Options

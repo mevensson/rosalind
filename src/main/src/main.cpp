@@ -2,6 +2,7 @@
 #include "options.hpp"
 #include "revc.hpp"
 #include "rna.hpp"
+#include "subs.hpp"
 
 #include <boost/iostreams/device/mapped_file.hpp>
 #include <fstream>
@@ -62,6 +63,15 @@ int main(const int argc, const char* const argv[])
         const auto par = &revc_par<decltype(first)>;
         const auto result = execute(executionType, ser, par, first, last);
         std::cout << result << "\n";
+        break;
+    }
+    case Problem::Subs:
+    {
+        const auto result = subs(first, last);
+        for (const auto& i : result)
+        {
+            std::cout << i << " ";
+        }
         break;
     }
     }

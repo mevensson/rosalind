@@ -78,6 +78,10 @@ static auto validate(
     {
         result = Problem::Revc;
     }
+    else if (string == "subs")
+    {
+        result = Problem::Subs;
+    }
     else
     {
         throw validation_error(validation_error::invalid_option_value);
@@ -95,7 +99,9 @@ static auto doParse(const int argc, const char* const argv[])
         ("problem,p", value<Problem>()->required(), "Select which problem to solve.\n"
                                                     "Valid values are:\n"
                                                     "    dna\n"
-                                                    "    rna\n")
+                                                    "    revc\n"
+                                                    "    rna\n"
+                                                    "    subs\n")
         ("filename,f", value<std::string>()->required(), "The input file.");
     // clang-format on
 

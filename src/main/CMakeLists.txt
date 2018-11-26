@@ -9,6 +9,7 @@ target_link_libraries(
         dna_lib
         rna_lib
         revc_lib
+        subs_lib
         Boost::iostreams
 )
 
